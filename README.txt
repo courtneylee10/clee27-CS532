@@ -1,9 +1,10 @@
-Lab 5 - Recursive Directory Traversal
+Lab 6
 
 Compile: 
-gcc -Wall -o readdir readdir_v2.c 
+gcc -Wall -o listings listings.c 
 
 Execution:
-./readdir .
+./listings
 
-This will start the traversal in the current directory. 
+This program will create two files, host_name_sorted.csv and price_sorted.csv.
+The program reads 22,519 listings from the input file. 
