@@ -20,7 +20,6 @@ struct listing {
     int availability_365;
 };
 
-/* Makes a copy of a string */
 char *copyString(char *str)
 {
     char *copy;
@@ -35,7 +34,6 @@ char *copyString(char *str)
     return copy;
 }
 
-/* Parses one line from the CSV file */
 struct listing getFields(char *line)
 {
     struct listing item;
@@ -83,7 +81,6 @@ struct listing getFields(char *line)
     return item;
 }
 
-/* Sorts by host name */
 int compareHostName(const void *a, const void *b)
 {
     struct listing *item1 = (struct listing *)a;
@@ -92,7 +89,6 @@ int compareHostName(const void *a, const void *b)
     return strcmp(item1->host_name, item2->host_name);
 }
 
-/* Sorts by price */
 int comparePrice(const void *a, const void *b)
 {
     struct listing *item1 = (struct listing *)a;
@@ -112,7 +108,6 @@ int comparePrice(const void *a, const void *b)
     }
 }
 
-/* Writes one listing to a file */
 void writeListing(FILE *file, struct listing item)
 {
     fprintf(file,
@@ -132,7 +127,6 @@ void writeListing(FILE *file, struct listing item)
             item.availability_365);
 }
 
-/* Frees memory used by the listings */
 void freeListings(struct listing list[], int count)
 {
     int i;
@@ -169,7 +163,6 @@ int main(void)
         return 1;
     }
 
-    /* Open input file */
     inputFile = fopen("listings.csv", "r");
 
     if (inputFile == NULL)
@@ -179,10 +172,8 @@ int main(void)
         return 1;
     }
 
-    /* Skip the header line */
     fgets(line, LINE_SIZE, inputFile);
 
-    /* Read the listings */
     while (fgets(line, LINE_SIZE, inputFile) != NULL)
     {
         if (count >= capacity)
@@ -205,10 +196,8 @@ int main(void)
 
     fclose(inputFile);
 
-    /* Sort by host name */
     qsort(list, count, sizeof(struct listing), compareHostName);
 
-    /* Open host name output file */
     hostFile = fopen("host_name_sorted.csv", "w");
 
     if (hostFile == NULL)
@@ -218,11 +207,9 @@ int main(void)
         return 1;
     }
 
-    /* Write header */
     fprintf(hostFile,
             "id,host_id,host_name,neighbourhood_group,neighbourhood,latitude,longitude,room_type,price,minimum_nights,number_of_reviews,calculated_host_listings_count,availability_365\n");
 
-    /* Write host name sorted data */
     {
         int i;
 
@@ -234,10 +221,8 @@ int main(void)
 
     fclose(hostFile);
 
-    /* Sort by price */
     qsort(list, count, sizeof(struct listing), comparePrice);
 
-    /* Open price output file */
     priceFile = fopen("price_sorted.csv", "w");
 
     if (priceFile == NULL)
@@ -247,11 +232,9 @@ int main(void)
         return 1;
     }
 
-    /* Write header */
     fprintf(priceFile,
             "id,host_id,host_name,neighbourhood_group,neighbourhood,latitude,longitude,room_type,price,minimum_nights,number_of_reviews,calculated_host_listings_count,availability_365\n");
 
-    /* Write price sorted data */
     {
         int i;
 
