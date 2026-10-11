@@ -1,10 +1,9 @@
-Lab 6
+Lab 7
 
 Compile: 
-gcc -Wall -o listings listings.c 
+gcc -Wall -o lab07 lab07.c 
 
 Execution:
-./listings
+./lab07 input.txt
 
-This program will create two files, host_name_sorted.csv and price_sorted.csv.
-The program reads 22,519 listings from the input file. 
+For this program to run the input.txt must be available. The output.log file is generated when the program executes. 
