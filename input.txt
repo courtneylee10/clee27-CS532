@@ -1,0 +1,4 @@
+uname -a
+/sbin/ifconfig
+/home/UAB/clee27/CS532/lab07 500
+/home/UAB/clee27/CS532/lab07 1000
